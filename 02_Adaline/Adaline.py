@@ -49,6 +49,7 @@ class Adaline:
             print("---------" + str(n) + "-----------")
             print(self.w_)
             self.w_[1:] += update
+            self.w_[0] += self.eta * train.sum()
 
             cost_ = np.power(train, 2)
             errors = np.sum(cost_)/(2 * len(X))

@@ -16,18 +16,30 @@ X, y = make_classification(n_samples=400, n_features=5, n_redundant=0, n_repeate
 # Separar les dades: train_test_split
 
 # TODO
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, train_size=0.33, random_state=42)
 
 # Estandaritzar les dades: StandardScaler
 
 # TODO
+scaler = StandardScaler()
+X_train_scaled = scaler.fit(X_train)
 
 # Entrenam una SVM linear (classe SVC)
 
 # TODO
 
+svm = SVC(C=1000, kernel="linear")
+svm.fit(X_train_scaled, Y_train)
+
 # Prediccio
 # TODO
 
+svm_predict = svm.predict(X_test)
 
 # Metrica
 # TODO
+
+total = len(Y_test)
+aciertos = 
+metric = aciertos/total
+print(metric)
