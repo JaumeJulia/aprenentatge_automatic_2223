@@ -41,6 +41,9 @@ class Perceptron:
         """
         self.w_ = np.zeros(1 + X.shape[1])
 
+        for iteration in range(self.n_iter):
+            
+
         # TODO: Put your code
         return self
 
@@ -50,5 +53,4 @@ class Perceptron:
             Second apply the step function
             Return a list with classes
         """
-
         # TODO: Put your code

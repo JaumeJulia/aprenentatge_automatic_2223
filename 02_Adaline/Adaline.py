@@ -41,6 +41,20 @@ class Adaline:
         """
         self.w_ = np.zeros(1 + X.shape[1])
         self.cost_ = []
+        self.errors_ = []
+
+        for n in range(self.n_iter):
+            train = y - self.net_input(X)
+            update = self.eta * train.dot(X)
+            print("---------" + str(n) + "-----------")
+            print(self.w_)
+            self.w_[1:] += update
+
+            cost_ = np.power(train, 2)
+            errors = np.sum(cost_)/(2 * len(X))
+            print(errors)
+            self.errors_.append(errors)
+        return self
 
         # TODO: Put your code here!
 
