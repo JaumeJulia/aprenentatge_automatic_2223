@@ -22,7 +22,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, y, train_size=0.33, rando
 
 # TODO
 scaler = StandardScaler()
-X_train_scaled = scaler.fit(X_train)
+X_train_scaled = scaler.fit_transform(X_train)
 
 # Entrenam una SVM linear (classe SVC)
 
@@ -40,6 +40,6 @@ svm_predict = svm.predict(X_test)
 # TODO
 
 total = len(Y_test)
-aciertos = 
-metric = aciertos/total
+fails = np.nonzero(Y_test - svm_predict)
+metric = (total - len(fails))/total
 print(metric)
