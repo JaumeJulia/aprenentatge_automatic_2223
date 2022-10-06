@@ -1,0 +1,4 @@
+
+*.rar
+*/__pycache__/
+.idea/
