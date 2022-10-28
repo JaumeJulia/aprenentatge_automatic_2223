@@ -74,8 +74,11 @@ gm = GaussianMixture(n_components=minimo)
 gm.fit(pcaDigits)
 x, y = gm.sample(100)
 
+plt.scatter(x[:, 0], x[:, 1], c=y)
+plt.show()
+
 #Desfeim la transformació del PCA i mostram els resultats
 
 x = pca.inverse_transform(x)
-plt.scatter(x[:, 0], x[:, 1], c=y)
+plot_digits(x)
 plt.show()
