@@ -20,4 +20,3 @@ wordsDF=pd.concat([catala,angles], axis=0)
 #Shuffle the rows
 wordsDF = wordsDF.sample(frac=1).reset_index(drop=True)
 wordsDF.to_csv('data/definitiveData.csv', index=False)
-print(wordsDF.to_string)
