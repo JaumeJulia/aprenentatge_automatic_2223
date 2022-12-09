@@ -1,5 +1,17 @@
-#Imports
 import pandas as pd
+from matplotlib.colors import ListedColormap
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import accuracy_score
+#https://scikit-learn.org/stable/modules/model_evaluation.html
+import matplotlib.pyplot as plt
+
+import numpy as np
+from numpy import mean
+
+from sklearn.svm import SVC
+from sklearn.svm import LinearSVC 
 
 
 #Auxiliar function that reformats df to one that is more fitting to Classification Problems
@@ -89,3 +101,25 @@ wordsDF['enCC']=wordsDF['word'].apply(enCC)
 wordsDF=wordsDF[['word','ratio','cantidadLetras','gotAccent','doubleVocal','enCC','y']]
 wordsDF.to_csv('data/definitiveData.csv', index=False)
 print(wordsDF)
+
+#First we must separate dataframe into X and y format
+X=wordsDF.iloc[:,1:3]
+y=wordsDF.iloc[:,6]
+print(X)
+#Then we separate the data frame in training and test (will be used in chosen model)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=33)
+#Modelo
+SVM_Lineal = LinearSVC(loss='squared_hinge', dual=False, C=50)
+
+def evaluate_model(cv):
+    #https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation
+    score = cross_val_score(SVM_Lineal,X,y,scoring='accuracy',cv=cv,n_jobs=-1)
+    return mean(score),score.min(),score.max()
+
+
+#Range to be tested
+folds = range (5,11)
+for k in folds:
+    cv=StratifiedKFold(n_splits=k, shuffle=True)
+    k_mean, k_min, k_max = evaluate_model(cv)
+    print(f'-> folds={k}, accuracy = {round(k_mean,4)}, ({round(k_min,4)}, {round(k_max,4)})')
