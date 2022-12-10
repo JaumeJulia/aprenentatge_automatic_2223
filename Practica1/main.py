@@ -103,7 +103,7 @@ wordsDF.to_csv('data/definitiveData.csv', index=False)
 print(wordsDF)
 
 #First we must separate dataframe into X and y format
-X=wordsDF.iloc[:,1:3]
+X=wordsDF.iloc[:,1:6]
 y=wordsDF.iloc[:,6]
 print(X)
 #Then we separate the data frame in training and test (will be used in chosen model)
