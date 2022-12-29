@@ -18,7 +18,7 @@ from sklearn.svm import LinearSVC
 def reformat(dataFrame):
     dataFrame['y']=dataFrame.columns[0]
     dataFrame.rename(columns={dataFrame.columns[0]: 'word'}, inplace=True)
-    return dataFrame;
+    return dataFrame
 #RawData, it has been a little bit formatted before reading the csv, to facilitate the process.
 raw=pd.read_csv("data/data.csv")
 
